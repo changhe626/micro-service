@@ -1,7 +1,9 @@
-package com.example.order.service.impl;
+package com.example.order.client;
 
+import com.example.order.entity.ProductInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public interface ProductList {
     String productMessage();
 
 
-    //@GetMapping("")
-   //List<ProductInfo> listForOrder(List<String> strings);
+    @PostMapping("listForOrder")
+    List<ProductInfo> listForOrder(List<String> productList);
 
 }

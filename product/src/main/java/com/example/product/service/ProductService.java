@@ -13,5 +13,5 @@ public interface ProductService {
     List<ProductInfo> findUpAll();
 
 
-
+    List<ProductInfo> listForOrder(List<String> productList);
 }

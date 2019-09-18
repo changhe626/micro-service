@@ -20,4 +20,9 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductInfo> findUpAll() {
         return productDao.findByProductStatus(ProductStatusEnum.UP.getCode());
     }
+
+    @Override
+    public List<ProductInfo> listForOrder(List<String> productList) {
+        return productDao.findByProductIdIn(productList);
+    }
 }

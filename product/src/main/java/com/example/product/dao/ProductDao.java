@@ -9,5 +9,7 @@ public interface ProductDao extends JpaRepository<ProductInfo,String> {
 
     List<ProductInfo> findByProductStatus(Integer productStatus);
 
+    List<ProductInfo> findByProductIdIn(List<String> productList);
+
 
 }
