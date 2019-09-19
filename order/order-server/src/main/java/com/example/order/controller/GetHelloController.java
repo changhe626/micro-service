@@ -1,9 +1,10 @@
 package com.example.order.controller;
 
-
 import com.example.product.client.ProductList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
  * @date 2019-09-18 10:32
  */
 @RestController
+@RefreshScope   //config 刷新配置.
 public class GetHelloController {
 
     @Autowired
@@ -55,6 +57,16 @@ public class GetHelloController {
         String message = productList.productMessage();
         System.out.println(message);
         return message;
+    }
+
+    @Value("${env}")
+    private String env;
+
+    @GetMapping("env")
+    public String getEnv(){
+        //读取配置的文件的值
+        return env;
+
     }
 
 
