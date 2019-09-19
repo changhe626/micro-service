@@ -18,7 +18,6 @@ public class GetHelloController {
 
     @Autowired
     private LoadBalancerClient loadBalancerClient;
-
     @Autowired
     private RestTemplate restTemplate;
 
@@ -32,7 +31,6 @@ public class GetHelloController {
         System.out.println(object);
         return object*/
 
-
         //第二种,利用LoadBalancerClient,利用应用名字获取
         //注册在eureka中的服务名字
         /*ServiceInstance serviceInstance = loadBalancerClient.choose("PRODUCT-SERVICE");
@@ -41,7 +39,6 @@ public class GetHelloController {
         String object = template.getForObject(format, String.class);
         System.out.println(object);
         return object;*/
-
 
         //第三种方式,使用RestTemplateConfig ,利用LoadBalanced 使用名字
         String object = restTemplate.getForObject("http://PRODUCT-SERVICE/hello", String.class);
@@ -54,9 +51,10 @@ public class GetHelloController {
     private ProductList productList;
 
     @GetMapping("get-hello2")
-    public void getMsg(){
+    public String getMsg(){
         String message = productList.productMessage();
         System.out.println(message);
+        return message;
     }
 
 
