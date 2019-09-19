@@ -16,14 +16,14 @@ import java.util.List;
 /**
  * 调用哪个服务的接口, product的服务
  */
-@FeignClient(name = "product")
+@FeignClient(name = "PRODUCT-SERVICE")
 public interface ProductList {
 
     /**
      * 请求的url,下面的方法名可以随意
      * @return
      */
-    @GetMapping("/msg")
+    @GetMapping("/hello")
     String productMessage();
 
 

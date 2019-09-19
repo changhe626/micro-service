@@ -1,12 +1,12 @@
 package com.example.order.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.example.order.constans.ResultEnum;
 import com.example.order.dto.OrderDTO;
 import com.example.order.dto.OrderForm;
 import com.example.order.entity.OrderDetail;
 import com.example.order.exception.OrderException;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +31,9 @@ public class OrderForm2DTO {
         orderDTO.setBuyerName(orderForm.getName());
         orderDTO.setOrderId(orderForm.getOpenid());
         List<OrderDetail> list = new ArrayList<>();
-        Gson gson = new Gson();
         try {
-            //TypeToken<List<OrderDetail>> typeToken = new TypeToken<List<OrderDetail>>() {
-            //};
-            //list= gson.fromJson(orderForm.getItems(), typeToken.getType());
+            list = JSON.parseObject(orderForm.getItems(), new TypeReference<List<OrderDetail>>() {
+            });
         } catch (Exception e) {
             System.out.println("json转换出错");
             throw new OrderException(ResultEnum.PARAM_ERROR);

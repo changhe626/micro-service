@@ -44,9 +44,9 @@ public class OrderController {
         OrderDTO orderDTO = OrderForm2DTO.convert(orderForm);
         //判断购物车是否为空
         List<OrderDetail> list = orderDTO.getOrderDetailList();
-        /*if (list == null || list.size() == 0) {
+        if (list == null || list.size() == 0) {
             throw new OrderException(ResultEnum.CAET_EMPTY);
-        }*/
+        }
         OrderDTO dto = orderService.create(orderDTO);
         Map<String, String> map = new HashMap<>();
         map.put("orderId",dto.getOrderId());
