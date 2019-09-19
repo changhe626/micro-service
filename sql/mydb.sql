@@ -3,15 +3,15 @@
 
  Source Server         : 本地
  Source Server Type    : MySQL
- Source Server Version : 80011
+ Source Server Version : 50556
  Source Host           : localhost:3306
  Source Schema         : mydb
 
  Target Server Type    : MySQL
- Target Server Version : 80011
+ Target Server Version : 50556
  File Encoding         : 65001
 
- Date: 18/09/2019 23:26:22
+ Date: 19/09/2019 09:53:53
 */
 
 SET NAMES utf8mb4;
@@ -29,10 +29,10 @@ CREATE TABLE `order_detail`  (
   `product_price` decimal(10, 2) NULL DEFAULT NULL,
   `product_quantity` int(255) NULL DEFAULT NULL,
   `product_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `create_time` timestamp(0) NULL DEFAULT NULL,
-  `update_time` timestamp(0) NULL DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`detail_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for order_master
@@ -46,9 +46,15 @@ CREATE TABLE `order_master`  (
   `buyer_openid` int(11) NULL DEFAULT NULL,
   `order_amount` decimal(8, 0) NULL DEFAULT NULL,
   `order_status` int(255) NULL DEFAULT NULL,
-  `create_time` timestamp(0) NULL DEFAULT NULL,
-  `update_time` timestamp(0) NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+  `pay_status` int(255) NULL DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of order_master
+-- ----------------------------
+INSERT INTO `order_master` VALUES ('1568857515788780824', 'zhangsan', '123456', 'hubei', NULL, 4, 0, 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for product_category
@@ -58,10 +64,10 @@ CREATE TABLE `product_category`  (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `category_type` int(11) NULL DEFAULT NULL,
-  `create_time` timestamp(0) NULL DEFAULT NULL,
-  `update_time` timestamp(0) NULL DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of product_category
@@ -82,10 +88,10 @@ CREATE TABLE `product_info`  (
   `product_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `product_type` int(255) NULL DEFAULT NULL,
   `category_type` int(255) NULL DEFAULT NULL,
-  `create_time` timestamp(0) NULL DEFAULT NULL,
-  `update_time` timestamp(0) NULL DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of product_info

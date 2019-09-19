@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author zk
- * @Description:
+ * @Description: 已经废弃,现在使用feign进行应用之间的通信
  * @date 2019-09-18 10:44
  */
 @Component

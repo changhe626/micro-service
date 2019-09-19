@@ -1,5 +1,6 @@
 package com.example.product.controller;
 
+import com.example.product.dto.CartDTO;
 import com.example.product.entity.ProductCategory;
 import com.example.product.entity.ProductInfo;
 import com.example.product.service.CategoryService;
@@ -62,12 +63,17 @@ public class ProductController {
 
     /**
      * 获取商品列表, 给订单服务用的.
-     * @param productList
-     * @return
+     * 因为使用了注解RequestBody 所以必须使用post的方式
      */
-    @PostMapping("listForOrder")
+    @PostMapping("/listForOrder")
     public List<ProductInfo> listForOrder(@RequestBody List<String> productList){
         return productService.listForOrder(productList);
+    }
+
+
+    @PostMapping("/descProductStock")
+    public void descProductStock(@RequestBody List<CartDTO> list){
+        productService.descProductStock(list);
     }
 
 

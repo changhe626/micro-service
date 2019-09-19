@@ -1,5 +1,6 @@
 package com.example.product.service;
 
+import com.example.product.dto.CartDTO;
 import com.example.product.entity.ProductInfo;
 
 import java.util.List;
@@ -14,4 +15,7 @@ public interface ProductService {
 
 
     List<ProductInfo> listForOrder(List<String> productList);
+
+    void descProductStock(List<CartDTO> list);
+
 }

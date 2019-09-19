@@ -1,9 +1,11 @@
 package com.example.order.client;
 
+import com.example.order.dto.CartDTO;
 import com.example.order.entity.ProductInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -15,8 +17,9 @@ import java.util.List;
 
 /**
  * 调用哪个服务的接口, product的服务
+ * 注意了,这里的名字要求是小写的, 如果写成 PRODUCT-SERVICE  会报错, 找不到服务...
  */
-@FeignClient(name = "PRODUCT-SERVICE")
+@FeignClient(name = "product-service")
 public interface ProductList {
 
     /**
@@ -27,7 +30,21 @@ public interface ProductList {
     String productMessage();
 
 
-    @PostMapping("listForOrder")
+    /**
+     * 这里的PostMapping 和 product中的/product/listForOrder 的postmapping 相互对应
+     * @param productList
+     * @return
+     */
+    @PostMapping("/product/listForOrder")
     List<ProductInfo> listForOrder(List<String> productList);
+
+
+    /**
+     * 扣库存
+     * @param list
+     */
+    @PostMapping("/product/descProductStock")
+    void descProductStock(@RequestBody List<CartDTO> list);
+
 
 }
