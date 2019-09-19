@@ -11,7 +11,7 @@
  Target Server Version : 50556
  File Encoding         : 65001
 
- Date: 19/09/2019 09:53:53
+ Date: 19/09/2019 11:56:10
 */
 
 SET NAMES utf8mb4;
@@ -22,8 +22,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail`  (
-  `detail_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `order_id` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `detail_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `order_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `product_id` int(11) NULL DEFAULT NULL,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `product_price` decimal(10, 2) NULL DEFAULT NULL,
@@ -33,6 +33,11 @@ CREATE TABLE `order_detail`  (
   `update_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`detail_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of order_detail
+-- ----------------------------
+INSERT INTO `order_detail` VALUES ('1568865344137941824', '1568865344124282153', 2, NULL, 23.60, 4, '图标', '2019-09-17 19:36:59', '2019-09-17 19:37:02');
 
 -- ----------------------------
 -- Table structure for order_master
@@ -55,6 +60,7 @@ CREATE TABLE `order_master`  (
 -- Records of order_master
 -- ----------------------------
 INSERT INTO `order_master` VALUES ('1568857515788780824', 'zhangsan', '123456', 'hubei', NULL, 4, 0, 0, NULL, NULL);
+INSERT INTO `order_master` VALUES ('1568865344124282153', 'zhangsan', '123456', 'hubei', NULL, 94, 0, 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for product_category
@@ -96,7 +102,7 @@ CREATE TABLE `product_info`  (
 -- ----------------------------
 -- Records of product_info
 -- ----------------------------
-INSERT INTO `product_info` VALUES ('1', '小米X5', 23.60, '12', '小米手机X5的描述', '图标', '1', 1, 1, '2019-09-17 19:36:59', '2019-09-17 19:37:02');
-INSERT INTO `product_info` VALUES ('2', '小米6', 23.60, '12', '小米手机6的描述', '图标', '0', 1, 1, '2019-09-17 19:36:59', '2019-09-17 19:37:02');
+INSERT INTO `product_info` VALUES ('1', '小米X5', 23.60, '10', '小米手机X5的描述', '图标', '1', 1, 1, '2019-09-17 19:36:59', '2019-09-17 19:37:02');
+INSERT INTO `product_info` VALUES ('2', '小米6', 23.60, '8', '小米手机6的描述', '图标', '0', 1, 1, '2019-09-17 19:36:59', '2019-09-17 19:37:02');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -11,7 +11,7 @@ public class OrderDetail {
     @Id
     private String detailId;
     private String orderId;
-    private Integer productId;
+    private String productId;
     private String productName;
     private BigDecimal productPrice;
     private Integer productQuantity;
@@ -35,11 +35,11 @@ public class OrderDetail {
         this.orderId = orderId;
     }
 
-    public Integer getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
