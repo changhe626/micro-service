@@ -7,6 +7,7 @@ import com.example.product.client.ProductList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
  * @Description:
  * @date 2019-09-18 10:32
  */
-//@RefreshScope   //config 刷新配置.
+@RefreshScope   //config 刷新配置.
 @RestController
 public class GetHelloController {
 

@@ -23,5 +23,12 @@ public class ConfigServerApplication {
      * name 服务名
      * profiles 环境
      * label  分支branch
+     *
+     * 刷新链接:
+     * 在请求头添加一个Content-Type:application/json
+     * POST  http://localhost:8083/actuator/bus-refresh
+     *
+     * https://natapp.cn
+     * 186手机号, 123456
      */
 }
