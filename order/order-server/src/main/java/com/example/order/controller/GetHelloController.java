@@ -1,21 +1,24 @@
 package com.example.order.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.example.order.entity.OrderMaster;
+import com.example.order.service.OrderService;
 import com.example.product.client.ProductList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
 
 /**
  * @author zk
  * @Description:
  * @date 2019-09-18 10:32
  */
+//@RefreshScope   //config 刷新配置.
 @RestController
-@RefreshScope   //config 刷新配置.
 public class GetHelloController {
 
     @Autowired
@@ -59,14 +62,23 @@ public class GetHelloController {
         return message;
     }
 
-    @Value("${env}")
+    @Autowired
+    private OrderService orderService;
+
+    @GetMapping("testConfig")
+    public String testConfig(){
+        OrderMaster orderMaster = orderService.findOne();
+        return JSON.toJSONString(orderMaster);
+    }
+
+
+    //读取配置的文件的值
+    @Value("${user.env}")
     private String env;
 
     @GetMapping("env")
     public String getEnv(){
-        //读取配置的文件的值
         return env;
-
     }
 
 

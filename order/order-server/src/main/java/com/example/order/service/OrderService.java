@@ -1,6 +1,7 @@
 package com.example.order.service;
 
 import com.example.order.dto.OrderDTO;
+import com.example.order.entity.OrderMaster;
 
 public interface OrderService {
 
@@ -11,4 +12,5 @@ public interface OrderService {
      */
     OrderDTO create(OrderDTO orderDTO);
 
+    OrderMaster findOne();
 }

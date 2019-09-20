@@ -75,5 +75,10 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    @Override
+    public OrderMaster findOne() {
+        return orderMasterDao.findById("1568857515788780824").get();
+    }
+
 
 }
