@@ -1,5 +1,6 @@
 package com.example.order.message;
 
+import com.example.order.constans.MessageConstant;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -15,14 +16,14 @@ import org.springframework.stereotype.Component;
 public class MQReceiver {
 
     //1.手动创建队列
-    //@RabbitListener(queues="myQueue")
+    //@RabbitListener(queues= MessageConstant.QUEUE_NAME)
 
     //2.自动创建队列
-    //@RabbitListener(queuesToDeclare = @Queue("myQueue"))
+    //@RabbitListener(queuesToDeclare = @Queue(MessageConstant.QUEUE_NAME))
 
     //3.自动创建 exchange 和 queue绑定
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue("myQueue")
+            value = @Queue(MessageConstant.QUEUE_NAME)
             ,exchange = @Exchange("myExchange"))
     )
     public void process(String message){
@@ -30,6 +31,7 @@ public class MQReceiver {
     }
 
     /**
+     * 按照exchange 和 key 进行匹配.
      * 数码消息接受商
      * @param message
      */
@@ -41,7 +43,6 @@ public class MQReceiver {
     public void computerProcess(String message){
         System.out.println("computer接收到的消息是:"+message);
     }
-
 
 
     /**

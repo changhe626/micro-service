@@ -14,20 +14,15 @@ import org.springframework.messaging.SubscribableChannel;
 public interface StreamClient {
 
 
-    @Input(MessageConstant.MSG1)
+    /**
+     * 这里的input 和 output 必须是不同的字符串, 不然是同名的bean错误
+     */
+    @Input(MessageConstant.INPUT)
     SubscribableChannel input();
 
 
-    @Output(MessageConstant.MSG1)
+    @Output(MessageConstant.OUTPUT)
     MessageChannel output();
-
-
-    @Input(MessageConstant.MSG2)
-    SubscribableChannel input2();
-
-
-    @Output(MessageConstant.MSG2)
-    MessageChannel output2();
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.order.controller;
 
+import com.example.order.constans.MessageConstant;
 import com.example.order.dto.OrderDTO;
 import com.example.order.message.StreamClient;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -26,11 +27,11 @@ public class SendMessageController {
     private AmqpTemplate amqpTemplate;
 
     @GetMapping("send")
-    public String sendMessage(){
+    public String sendMessage() {
         //可能需要实现创建一个myQueue的队列
-        amqpTemplate.convertAndSend("myQueue","this is the first message");
-        amqpTemplate.convertAndSend("myOrder","computer","this is the first computer  message");
-        amqpTemplate.convertAndSend("myOrder","fruit","this is the first message");
+        amqpTemplate.convertAndSend(MessageConstant.QUEUE_NAME, "this is the first message");
+        amqpTemplate.convertAndSend("myOrder", "computer", "this is the first computer  message");
+        amqpTemplate.convertAndSend("myOrder", "fruit", "this is the first message");
         return "success";
     }
 
@@ -40,11 +41,13 @@ public class SendMessageController {
 
     /**
      * 发送字符串对象
+     *
      * @return
      */
     /*@GetMapping("send2")
-    public String send2(){
-        String msg= "now is"+ LocalDateTime.now();
+    public String send2() {
+        String msg = "time  is today, haha ";
+        System.out.println("发送的消息是:" + msg);
         streamClient.output().send(MessageBuilder.withPayload(msg).build());
         return "success";
     }*/
@@ -52,6 +55,8 @@ public class SendMessageController {
 
     /**
      * 发送java bean对象
+     * 这个send3 不能和send2 使用的同一个变量.但是不能共存, 需要注释掉, 不然报错的...
+     *
      * @return
      */
     @GetMapping("send3")
@@ -62,12 +67,6 @@ public class SendMessageController {
         streamClient.output().send(MessageBuilder.withPayload(dto).build());
         return "success";
     }
-
-
-
-
-
-
 
 
 }

@@ -7,10 +7,11 @@ package com.example.order.constans;
  */
 public class MessageConstant {
 
-    public final static String MSG1 = "myMessage";
+    public final static String INPUT = "input";
 
+    public final static String OUTPUT = "output";
 
-    public final static String MSG2 = "myMessage2";
+    public final static String QUEUE_NAME = "myQueue";
 
 
 }
