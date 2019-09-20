@@ -1,5 +1,6 @@
 package com.example.order.message;
 
+import com.example.order.constans.MessageConstant;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
@@ -12,26 +13,20 @@ import org.springframework.messaging.SubscribableChannel;
  */
 public interface StreamClient {
 
-    /**
-     * 常量的替换
-     */
-    String INPUT="myMessage";
 
-    String INPUT2="myMessage2";
-
-    @Input(StreamClient.INPUT)
+    @Input(MessageConstant.MSG1)
     SubscribableChannel input();
 
 
-    @Output(StreamClient.INPUT)
+    @Output(MessageConstant.MSG1)
     MessageChannel output();
 
 
-    @Input(StreamClient.INPUT2)
+    @Input(MessageConstant.MSG2)
     SubscribableChannel input2();
 
 
-    @Output(StreamClient.INPUT2)
+    @Output(MessageConstant.MSG2)
     MessageChannel output2();
 
 

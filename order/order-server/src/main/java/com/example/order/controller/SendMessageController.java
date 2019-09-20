@@ -42,12 +42,12 @@ public class SendMessageController {
      * 发送字符串对象
      * @return
      */
-    @GetMapping("send2")
+    /*@GetMapping("send2")
     public String send2(){
         String msg= "now is"+ LocalDateTime.now();
         streamClient.output().send(MessageBuilder.withPayload(msg).build());
         return "success";
-    }
+    }*/
 
 
     /**
