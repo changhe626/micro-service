@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GirlController {
 
+    /**
+     * 因为在 GirlConfig 上已经添加了 RefreshScope 注解,
+     * 所以GirlController 上就不要再加了
+     */
     @Autowired
     private GirlConfig girlConfig;
 
