@@ -39,6 +39,13 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDetail> orderDetailList = orderDTO.getOrderDetailList();
         List<String> list = orderDetailList.stream().map(OrderDetail::getProductId).collect(Collectors.toList());
         List<ProductInfo> productInfos = productList.listForOrder(list);
+
+        //读redis
+        //减库存并且重新设置值到redis
+        //订单入库异常,需要手动回滚redis
+
+
+
         //3.计算总价
         BigDecimal sum = new BigDecimal(BigInteger.ZERO);
         for (OrderDetail detail : orderDetailList) {

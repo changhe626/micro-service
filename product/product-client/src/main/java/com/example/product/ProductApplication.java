@@ -12,4 +12,9 @@ public class ProductApplication {
         SpringApplication.run(ProductApplication.class, args);
     }
 
+    /**
+     * TODO 统一配置的处理.
+     *
+     * product 和 order 的分库.
+     */
 }
