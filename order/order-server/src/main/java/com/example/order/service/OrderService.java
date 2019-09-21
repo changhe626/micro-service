@@ -13,4 +13,6 @@ public interface OrderService {
     OrderDTO create(OrderDTO orderDTO);
 
     OrderMaster findOne();
+
+    OrderDTO finishOrder(String orderId);
 }

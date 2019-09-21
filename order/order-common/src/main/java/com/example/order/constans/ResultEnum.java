@@ -9,6 +9,9 @@ public enum ResultEnum {
 
     PARAM_ERROR(1,"参数错误"),
     CAET_EMPTY(2,"购物车为空"),
+    ORDER_NOT_EXISTS(3,"订单不存在"),
+    ORDER_ERROR(4,"订单状态错误"),
+    ORDER_DETAIL_NOT_EXISTS(5,"订单详细错误"),
     ;
 
     private int code;

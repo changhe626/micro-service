@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("com/example/order")
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -52,6 +53,19 @@ public class OrderController {
         Map<String, String> map = new HashMap<>();
         map.put("orderId",dto.getOrderId());
         ResultVo resultVo = ResultVoUtil.success(map);
+        return resultVo;
+    }
+
+
+    /**
+     * 完结订单
+     * @param orderId
+     * @return
+     */
+    @PostMapping("/finish")
+    public ResultVo finish(@RequestParam("orderId")String orderId){
+        OrderDTO dto = orderService.finishOrder(orderId);
+        ResultVo resultVo = ResultVoUtil.success(dto);
         return resultVo;
     }
 

@@ -1,6 +1,7 @@
 package com.example.order.service.impl;
 
 import com.example.common.entity.CartDTO;
+import com.example.order.constans.ResultEnum;
 import com.example.order.dao.OrderDetailDao;
 import com.example.order.dao.OrderMasterDao;
 import com.example.order.constans.OrderStatusEnum;
@@ -8,6 +9,7 @@ import com.example.order.constans.PayStatusEnum;
 import com.example.order.dto.OrderDTO;
 import com.example.order.entity.OrderDetail;
 import com.example.order.entity.OrderMaster;
+import com.example.order.exception.OrderException;
 import com.example.order.service.OrderService;
 import com.example.common.util.KeyUtil;
 import com.example.product.client.ProductList;
@@ -15,10 +17,12 @@ import com.example.product.entity.ProductInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service("orderService")
@@ -32,6 +36,7 @@ public class OrderServiceImpl implements OrderService {
     private ProductList productList;
 
     @Override
+    @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = KeyUtil.getUniqueKey();
         //1.参数校验
@@ -43,7 +48,6 @@ public class OrderServiceImpl implements OrderService {
         //读redis
         //减库存并且重新设置值到redis
         //订单入库异常,需要手动回滚redis
-
 
 
         //3.计算总价
@@ -85,6 +89,39 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderMaster findOne() {
         return orderMasterDao.findById("1568857515788780824").get();
+    }
+
+
+    /**
+     * 完结订单 ,只能卖家操作
+     */
+    @Override
+    @Transactional
+    public OrderDTO finishOrder(String orderId) {
+        //1.查询订单是否存在
+        Optional<OrderMaster> orderMaster = orderMasterDao.findById(orderId);
+        if (!orderMaster.isPresent()) {
+            throw new OrderException(ResultEnum.ORDER_NOT_EXISTS);
+        }
+        //2.判断订单状态
+        OrderMaster master = orderMaster.get();
+        if (OrderStatusEnum.NEW.getCode() != master.getOrderStatus()) {
+            throw new OrderException(ResultEnum.ORDER_ERROR);
+        }
+        //3.修改订单状态为完结.
+        master.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        orderMasterDao.save(master);
+
+        //4.查询订单详情,返回
+        List<OrderDetail> orderDetails = orderDetailDao.findByOrderId(orderId);
+        if (orderDetails == null) {
+            //订单详情不存在.
+            throw new OrderException(ResultEnum.ORDER_DETAIL_NOT_EXISTS);
+        }
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(master,orderDTO);
+        orderDTO.setOrderDetailList(orderDetails);
+        return orderDTO;
     }
 
 

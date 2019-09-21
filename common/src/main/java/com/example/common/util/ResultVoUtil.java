@@ -22,6 +22,14 @@ public class ResultVoUtil {
     }
 
 
+    public static ResultVo success(){
+        ResultVo vo = new ResultVo<>();
+        vo.setCode(0);
+        vo.setMsg("success");
+        return vo;
+    }
+
+
     /**
      * 失败
      * @param object
