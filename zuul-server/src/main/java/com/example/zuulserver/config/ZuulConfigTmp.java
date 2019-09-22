@@ -1,4 +1,4 @@
-package com.example.zuulserver;
+package com.example.zuulserver.config;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 //@Component   注释了, 暂时不做动态路由
-public class ZuulConfig {
+public class ZuulConfigTmp {
 
     /**
      * 路由的动态设置.

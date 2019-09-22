@@ -32,6 +32,10 @@ public class SellerFilter extends ZuulFilter {
         return 0;
     }
 
+    /**
+     * true 就进行校验, false 不校验
+     * @return
+     */
     @Override
     public boolean shouldFilter() {
         RequestContext requestContext = RequestContext.getCurrentContext();

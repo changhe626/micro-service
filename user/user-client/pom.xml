@@ -20,12 +20,6 @@
         </dependency>
         <dependency>
             <groupId>com.example</groupId>
-            <artifactId>user-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>

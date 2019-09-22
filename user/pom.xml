@@ -14,7 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>user-server</module>
-        <module>user-common</module>
         <module>user-client</module>
     </modules>
 

@@ -11,14 +11,6 @@
 
     <groupId>com.example</groupId>
     <artifactId>user-server</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>user-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 
 </project>

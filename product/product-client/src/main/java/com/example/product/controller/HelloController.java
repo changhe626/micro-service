@@ -21,6 +21,11 @@ public class HelloController {
     @CrossOrigin(allowCredentials="true")
     @GetMapping("hello")
     public String hello() {
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "hello world, this is the product service";
     }
 

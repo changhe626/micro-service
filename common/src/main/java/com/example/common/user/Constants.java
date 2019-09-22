@@ -1,4 +1,4 @@
-package com.example.user.constant;
+package com.example.common.user;
 
 public class Constants {
 
