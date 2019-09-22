@@ -1,0 +1,8 @@
+cd  eureka-server
+
+docker build -t springcloud2/eureka .
+
+docker run -p 8761:8761 -d springcloud2/eureka
+
+
+rancher
